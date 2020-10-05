@@ -16,20 +16,26 @@
     "name":"spacy_pretrained_vectors"
   },
   "pipeline":[
-    "ner"
+    "ner",
+    "textcat"
   ],
   "factories":{
-    "ner":"ner"
+    "ner":"ner",
+    "textcat":"textcat"
   },
   "labels":{
     "ner":[
       "ACTIVITY",
       "ATTRACTION",
-      "ENVIRONMENT",
-      "LOC",
+      "FOOD",
+      "LOCALIZATION",
       "REGION",
-      "SEASON",
+      "SERVICE",
       "TRANSPORT"
+    ],
+    "textcat":[
+      "REVIEW",
+      "QUESTION"
     ]
   }
 }

@@ -12,9 +12,9 @@ from os.path import isfile, join
 
 
 # Carga los archivos json de la carpeta directorio
-def load_data(data_path):
-    # Se obiene los archivos json en 'data_path'
-    files = [join(data_path, f) for f in listdir(data_path) if isfile(join(data_path, f)) and f.endswith(".json")]
+def load_file_data(dir_path):
+    # Se obiene los archivos json del directorio por parametro
+    files = [join(dir_path, f) for f in listdir(dir_path) if isfile(join(dir_path, f)) and f.endswith(".json")]
 
     data = []
     for filename_file in files:
@@ -23,17 +23,18 @@ def load_data(data_path):
             train = json.load(file)
 
         for d in train:
-            data.append((d['content'], {'entities': d['entities']}))
+            if d['content']:
+                data.append((d['content'], {'entities': d['entities']}))
     return data
 
 
 # Compila todos los archivos de entrenamiento en un solo archivo
 if __name__ == "__main__":
-    train_data = load_data("files")
+    train_data = load_file_data("train")
 
     filename = 'train.json'
     with open(filename, 'w', encoding='utf8') as file_json:
         json.dump(train_data, file_json, ensure_ascii=False)
 
     # print(TRAIN_DATA)
-    print("Dumped to", filename)
+    print("Archivo creado", filename)
