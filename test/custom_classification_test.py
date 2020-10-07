@@ -19,7 +19,8 @@ def evaluate(textcat_model, test_text):
 if __name__ == "__main__":
     # Carga el modelo custom
     model_path = input("Enter your Model Name: ") or "travelbuddy_model"
-    model_path = os.path.dirname(__file__) + "/../" + model_path
+    if model_path != "es-core-news-lg":
+        model_path = os.path.dirname(__file__) + "/../" + model_path
     custom_nlp = spacy.load(model_path)
     # Se ingresa el texto custom
     test_data = input("Text to test: ")

@@ -6,6 +6,7 @@ Version: 1.0
 Proyecto: TravelBuddy
 """
 
+import es_travelbuddy
 import plac
 import spacy
 from classifier import *
@@ -21,7 +22,6 @@ class Result:
 
 def evaluate_sentimental_text(text_sentimental):
     result = clf_model.predict(text_sentimental)
-    result = '%.5f' % result
     return result
 
 
@@ -60,6 +60,6 @@ def main(text_to_evaluate=""):
 
 if __name__ == '__main__':
     spacy.require_gpu()
-    nlp_model = spacy.load("travelbuddy_model")
+    nlp_model = es_travelbuddy.load()
     clf_model = SentimentClassifier()
     plac.call(main)

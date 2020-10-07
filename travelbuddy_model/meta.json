@@ -27,11 +27,14 @@
     "ner":[
       "ACTIVITY",
       "ATTRACTION",
+      "CITY",
+      "ENVIRONMENT",
       "FOOD",
       "LOCALIZATION",
       "REGION",
       "SERVICE",
-      "TRANSPORT"
+      "TRANSPORT",
+      "TRANSPORT_SERVICE"
     ],
     "textcat":[
       "REVIEW",

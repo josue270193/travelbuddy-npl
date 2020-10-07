@@ -18,6 +18,7 @@ def load_file_data(dir_path, data_trained):
     # Se obiene los archivos json del directorio por parametro
     train_files = [join(dir_path, f) for f in listdir(dir_path) if isfile(join(dir_path, f)) and f.endswith(".txt")]
 
+    pre_data = []
     data = []
     for filename_file in train_files:
         print(filename_file)
@@ -26,9 +27,10 @@ def load_file_data(dir_path, data_trained):
 
         for d in train:
             clean_text = d.replace('\t', '').replace('\n', '')
-            if clean_text not in data_trained:
+            if clean_text not in data_trained and clean_text not in pre_data:
                 print(d)
                 is_review = bool(int(input("Es una review?: ") or 0))
+                pre_data.append(clean_text)
                 data.append(str(int(is_review)) + d)
     return data
 

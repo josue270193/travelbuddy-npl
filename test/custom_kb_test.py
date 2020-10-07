@@ -13,14 +13,14 @@ import spacy
 # Se hace la prueba del modelo con los ejemplos.
 def evaluate(ner_model, test_text):
     doc = ner_model(test_text)
-    entities = [[ent.start_char, ent.end_char, ent.label_, ent.text] for ent in doc.ents]
-    print(test_text, {"entities": entities})
+    entities = [(e.text, e.label_, e.kb_id_) for e in doc.ents]
+    print(entities)
 
 
 if __name__ == "__main__":
     # Carga el modelo custom
     model_path = input("Enter your Model Name: ") or "travelbuddy_model"
-    if model_path != "es-core-news-lg":
+    if model_path != ("es_core_news_lg" and "en_core_web_sm" and "en_core_web_lg"):
         model_path = os.path.dirname(__file__) + "/../" + model_path
     custom_nlp = spacy.load(model_path)
     # Se ingresa el texto custom

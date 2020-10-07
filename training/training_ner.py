@@ -15,12 +15,21 @@ from __future__ import unicode_literals, print_function
 import json
 import os
 import random
+import re
 import warnings
 from pathlib import Path
 
 import plac
 import spacy
+from spacy.tokenizer import Tokenizer
 from spacy.util import minibatch, compounding
+
+
+def my_tokenizer(nlp_aux, infix_re_aux):
+    return Tokenizer(nlp_aux.vocab,
+                     {},
+                     infix_finditer=infix_re_aux.finditer
+                     )
 
 
 @plac.annotations(
@@ -29,7 +38,7 @@ from spacy.util import minibatch, compounding
     output_dir=("Directorio de salida", "option", "o", Path),
     n_iter=("Numero de iteraciones de entrenamiento", "option", "n", int),
 )
-def main(model=None, new_model_name="travelbuddy", output_dir="travelbuddy_model", n_iter=100):
+def main(model=None, new_model_name="travelbuddy", output_dir="travelbuddy_model", n_iter=200):
     """ Ejecuta el entrenador de anotaciones NER personalizado para los textos de turismo """
     random.seed(0)
 
@@ -66,6 +75,10 @@ def main(model=None, new_model_name="travelbuddy", output_dir="travelbuddy_model
     with nlp.disable_pipes(*other_pipes), warnings.catch_warnings():
         # se filtra las advertencias por el alineamiento erroneo en las entity
         warnings.filterwarnings("once", category=UserWarning, module='spacy')
+
+        # Tokenizador
+        infix_re = re.compile(r'''[a-zA-Z]''')
+        nlp.tokenizer = my_tokenizer(nlp, infix_re)
 
         # se resetea y se inicializa el peso de forma aleatoria - pero solamente si estamos entrenando un modelo nuevo
         optimizer = nlp.begin_training()
