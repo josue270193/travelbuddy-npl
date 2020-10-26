@@ -25,13 +25,12 @@ def load_file_data(dir_path, data_trained):
         with open(filename_file, encoding='utf8') as file_data:
             train = file_data.readlines()
 
-        for d in train:
-            clean_text = d.replace('\t', '').replace('\n', '')
-            if clean_text not in data_trained and clean_text not in pre_data:
-                print(d)
+        for text in train:
+            if text not in data_trained and text not in pre_data:
+                print(text)
                 is_review = bool(int(input("Es una review?: ") or 0))
-                pre_data.append(clean_text)
-                data.append(str(int(is_review)) + d)
+                pre_data.append(text)
+                data.append(str(int(is_review)) + '\t' + text)
     return data
 
 
@@ -47,7 +46,7 @@ def load_file_pretrained(filename_pretrained):
 # Compila todos los archivos de entrenamiento en un solo archivo
 if __name__ == "__main__":
     # Reviso que el archivo final exista
-    filename = 'cats.txt'
+    filename = 'out/cats_all.txt'
     file_path = Path(filename)
     data_pretrained = []
     if file_path.exists():

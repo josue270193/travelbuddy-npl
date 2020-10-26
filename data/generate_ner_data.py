@@ -30,9 +30,9 @@ def load_file_data(dir_path):
 
 # Compila todos los archivos de entrenamiento en un solo archivo
 if __name__ == "__main__":
-    train_data = load_file_data("train")
+    train_data = load_file_data("ner/files")
 
-    filename = 'train.json'
+    filename = 'out/ner_all.json'
     with open(filename, 'w', encoding='utf8') as file_json:
         json.dump(train_data, file_json, ensure_ascii=False)
 

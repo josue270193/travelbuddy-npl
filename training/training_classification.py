@@ -122,7 +122,7 @@ def main(model=None, new_model_name="travelbuddy", output_dir="travelbuddy_model
 
 def load_data(limit=0, split=0.8):
     """Cargar los datos."""
-    data_path = "/../data/cats.txt"
+    data_path = "/../data/out/cats_all.txt"
     with open(os.path.dirname(__file__) + data_path, 'r') as f:
         reader = csv.reader(f, delimiter='\t')
         train_data = list(reader)

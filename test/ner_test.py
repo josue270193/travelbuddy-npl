@@ -58,12 +58,14 @@ def get_predictions(ner_model, examples):
 if __name__ == "__main__":
     # Carga el modelo custom
     model_path = input("Enter your Model Name: ") or "travelbuddy_model"
-    model_path = os.path.dirname(__file__) + "/../" + model_path
+    spacy_default_models = {"es_core_news_lg", "en_core_web_sm", "en_core_web_lg"}
+    if model_path not in spacy_default_models:
+        model_path = os.path.dirname(__file__) + "/../training/" + model_path
     custom_nlp = spacy.load(model_path)
     # Carga un modelo base de spaCy
     default_nlp = spacy.load("es_core_news_lg")
     # Carga los datos de pruebas
-    test_data_path = "train"
+    test_data_path = "ner"
     test_data = load_file_data(test_data_path)
     # Se realiza las pruebas de los modelos
     custom_eval = evaluate(custom_nlp, test_data)

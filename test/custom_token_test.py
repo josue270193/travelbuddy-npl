@@ -14,46 +14,53 @@ from spacy.tokenizer import Tokenizer
 
 
 def my_tokenizer(nlp_aux, infix_re_aux):
-    return Tokenizer(nlp_aux.vocab,
-                     {},
-                     infix_finditer=infix_re_aux.finditer
-                     )
+    return Tokenizer(nlp_aux.vocab, {}, infix_finditer=infix_re_aux.finditer)
 
 
 # Se hace la prueba del modelo con los ejemplos.
 def evaluate(ner_model, test_text):
     doc = ner_model(test_text)
     entities = [
-        [
-            14,
-            28,
-            "ATTRACTION"
-        ],
-        [
-            115,
-            127,
-            "ATTRACTION"
-        ],
-        [
-            204,
-            219,
-            "ACTIVITY"
-        ],
-        [
-            96,
-            111,
-            "ACTIVITY"
-        ],
-        [
-            305,
-            319,
-            "ATTRACTION"
-        ],
-        [
-            390,
-            402,
-            "ATTRACTION"
-        ]
+      [
+        52,
+        64,
+        "REGION"
+      ],
+      [
+        213,
+        220,
+        "SERVICE"
+      ],
+      [
+        223,
+        231,
+        "ENVIRONMENT"
+      ],
+      [
+        233,
+        241,
+        "ATTRACTION"
+      ],
+      [
+        244,
+        256,
+        "ATTRACTION"
+      ],
+      [
+        351,
+        356,
+        "TRANSPORT"
+      ],
+      [
+        397,
+        404,
+        "TRANSPORT"
+      ],
+      [
+        510,
+        522,
+        "REGION"
+      ]
     ]
     tags = biluo_tags_from_offsets(doc, entities)
     print(tags)
@@ -62,7 +69,8 @@ def evaluate(ner_model, test_text):
 if __name__ == "__main__":
     # Carga el modelo custom
     model_path = input("Enter your Model Name: ") or "travelbuddy_model"
-    if model_path != "es-core-news-lg":
+    spacy_default_models = {"es_core_news_lg", "en_core_web_sm", "en_core_web_lg" }
+    if model_path not in spacy_default_models:
         model_path = os.path.dirname(__file__) + "/../" + model_path
     custom_nlp = spacy.load(model_path)
 

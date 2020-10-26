@@ -26,10 +26,7 @@ from spacy.util import minibatch, compounding
 
 
 def my_tokenizer(nlp_aux, infix_re_aux):
-    return Tokenizer(nlp_aux.vocab,
-                     {},
-                     infix_finditer=infix_re_aux.finditer
-                     )
+    return Tokenizer(nlp_aux.vocab, {}, infix_finditer=infix_re_aux.finditer)
 
 
 @plac.annotations(
@@ -99,11 +96,6 @@ def main(model=None, new_model_name="travelbuddy", output_dir="travelbuddy_model
                 )
             print("Losses:", losses)
 
-    # # se prueba el modelo entrenado
-    # for text, _ in train_data:
-    #     doc = nlp(text)
-    #     print("Entities:", [(ent.text, ent.label_) for ent in doc.ents])
-
     # se guarda el modelo en el directorio de salida
     if output_dir is not None:
         output_dir = Path(output_dir)
@@ -114,17 +106,10 @@ def main(model=None, new_model_name="travelbuddy", output_dir="travelbuddy_model
             nlp.to_disk(output_dir)
         print("Modelo guardado en: ", output_dir)
 
-        # # se prueba el modelo guardado
-        # print("Cargando a partir:", output_dir)
-        # nlp2 = spacy.load(output_dir)
-        # for text, _ in TRAIN_DATA:
-        #     doc = nlp2(text)
-        #     print("Entities:", [(ent.text, ent.label_) for ent in doc.ents])
-
 
 def load_data():
     """Cargar los datos."""
-    data_path = "/../data/train.json"
+    data_path = "/../data/out/ner_all.json"
     with open(os.path.dirname(__file__) + data_path, 'r') as f:
         train_data = json.load(f)
 
