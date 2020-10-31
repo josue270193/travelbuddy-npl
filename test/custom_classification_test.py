@@ -21,7 +21,7 @@ if __name__ == "__main__":
     model_path = input("Enter your Model Name: ") or "travelbuddy_model"
     spacy_default_models = {"es_core_news_lg", "en_core_web_sm", "en_core_web_lg"}
     if model_path not in spacy_default_models:
-        model_path = os.path.dirname(__file__) + "/../" + model_path
+        model_path = os.path.dirname(__file__) + "/../training/" + model_path
     custom_nlp = spacy.load(model_path)
     # Se ingresa el texto custom
     test_data = input("Text to test: ")

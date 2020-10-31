@@ -26,7 +26,7 @@ from spacy.util import minibatch, compounding
     n_iter=("Numero de iteraciones de entrenamiento", "option", "n", int),
     init_tok2vec=("Pesos del preentrenamiento tok2vec", "option", "t2v", Path),
 )
-def main(model=None, new_model_name="travelbuddy", output_dir="travelbuddy_model", n_iter=100, n_texts=2000,
+def main(model=None, new_model_name="travelbuddy", output_dir="travelbuddy_model", n_iter=200, n_texts=2000,
          init_tok2vec=None):
     """ Ejecuta el entrenador de clasificacion personalizado para los textos de turismo """
     random.seed(0)
@@ -85,7 +85,7 @@ def main(model=None, new_model_name="travelbuddy", output_dir="travelbuddy_model
             batches = minibatch(train_data, size=batch_sizes)
             for batch in batches:
                 texts, annotations = zip(*batch)
-                nlp.update(texts, annotations, sgd=optimizer, drop=0.2, losses=losses)
+                nlp.update(texts, annotations, sgd=optimizer, drop=0.25, losses=losses)
             with textcat.model.use_params(optimizer.averages):
                 # Se evalua los datos de prueba y se separa de los datos obtenido en load_data()
                 scores = evaluate(nlp.tokenizer, textcat, dev_texts, dev_cats)

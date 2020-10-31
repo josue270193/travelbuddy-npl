@@ -21,47 +21,33 @@ def my_tokenizer(nlp_aux, infix_re_aux):
 def evaluate(ner_model, test_text):
     doc = ner_model(test_text)
     entities = [
-      [
-        52,
-        64,
-        "REGION"
-      ],
-      [
-        213,
-        220,
-        "SERVICE"
-      ],
-      [
-        223,
-        231,
-        "ENVIRONMENT"
-      ],
-      [
-        233,
-        241,
-        "ATTRACTION"
-      ],
-      [
-        244,
-        256,
-        "ATTRACTION"
-      ],
-      [
-        351,
-        356,
-        "TRANSPORT"
-      ],
-      [
-        397,
-        404,
-        "TRANSPORT"
-      ],
-      [
-        510,
-        522,
-        "REGION"
+        [
+          4,
+          13,
+          "SERVICE"
+        ],
+        [
+          18,
+          47,
+          "ATTRACTION"
+        ],
+        [
+          114,
+          127,
+          "CITY"
+        ],
+        [
+          128,
+          138,
+          "LOCALIZATION"
+        ],
+        [
+          187,
+          195,
+          "ACTIVITY"
+        ]
       ]
-    ]
+
     tags = biluo_tags_from_offsets(doc, entities)
     print(tags)
 
@@ -71,7 +57,7 @@ if __name__ == "__main__":
     model_path = input("Enter your Model Name: ") or "travelbuddy_model"
     spacy_default_models = {"es_core_news_lg", "en_core_web_sm", "en_core_web_lg" }
     if model_path not in spacy_default_models:
-        model_path = os.path.dirname(__file__) + "/../" + model_path
+        model_path = os.path.dirname(__file__) + "/../training/" + model_path
     custom_nlp = spacy.load(model_path)
 
     # Tokenizador

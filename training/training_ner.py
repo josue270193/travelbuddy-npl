@@ -91,7 +91,7 @@ def main(model=None, new_model_name="travelbuddy", output_dir="travelbuddy_model
                     texts,  # los textos
                     annotations,  # las anotaciones
                     sgd=optimizer,
-                    drop=0.2,  # abandono: dificulta la memorización de datos
+                    drop=0.25,  # abandono: dificulta la memorización de datos
                     losses=losses,
                 )
             print("Losses:", losses)

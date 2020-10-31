@@ -26,6 +26,7 @@ def load_file_data(dir_path, data_trained):
             train = file_data.readlines()
 
         for text in train:
+            text = text.replace('\t', '').replace('\n', '')
             if text not in data_trained and text not in pre_data:
                 print(text)
                 is_review = bool(int(input("Es una review?: ") or 0))
@@ -37,6 +38,7 @@ def load_file_data(dir_path, data_trained):
 def load_file_pretrained(filename_pretrained):
     data_pretrained_aux = []
     with open(filename, 'r', encoding='utf8') as file_pretrained:
+        print(filename)
         data_file_pretrained = csv.reader(file_pretrained, delimiter='\t')
         for [_, text] in list(data_file_pretrained):
             data_pretrained_aux.append(text)
