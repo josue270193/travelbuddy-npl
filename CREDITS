@@ -1,0 +1,17 @@
+Credits
+This application uses Open Source components. 
+You can find the source code of their open source projects along with license information below. 
+We acknowledge and are grateful to these developers for their contributions to open source.
+
+Project: spaCy https://github.com/explosion/spaCy
+Copyright (C) 2016-2020 ExplosionAI GmbH, 2016 spaCy GmbH, 2015 Matthew Honnibal
+The MIT License (MIT) https://github.com/explosion/spaCy/blob/master/LICENSE
+
+Project: senti-py https://github.com/aylliote/senti-py
+
+Project: wikibase-sdk https://github.com/maxlath/wikibase-sdk
+Copyright (c) 2015 Maxime Lathuilière
+The MIT License (MIT) https://github.com/maxlath/wikibase-sdk/blob/master/LICENSE.md
+
+Project Wikidata https://www.wikidata.org
+Creative Commons CC0 License https://www.wikidata.org/wiki/Wikidata:Licensing
